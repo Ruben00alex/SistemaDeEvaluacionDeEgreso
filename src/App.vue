@@ -1,5 +1,5 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
+import HelloWorld from "./components/HelloWorld.vue";
 
 const handleFileUpload = (e) => {
   const file = e.target.files[0];
@@ -9,21 +9,38 @@ const handleFileUpload = (e) => {
     console.log(reader.result);
   };
   reader.onerror = (error) => {
-    console.log('Error: ', error);
+    console.log("Error: ", error);
   };
 };
 </script>
 
 <template>
   <div>
-  <h1>hola</h1>
-  <p> ingrese un nuevo archivo:</p>
-  <input type="file" id="file" name="file" accept=".pdf" @change="handleFileUpload">
-  <button @click="uploadFile">Subir</button>
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
-  
-  
+    <h1>hola</h1>
+    <p>ingrese un nuevo archivo:</p>
+    <input
+      type="file"
+      id="file"
+      name="file"
+      accept=".pdf"
+      @change="handleFileUpload"
+    />
+    <button @click="uploadFile">Subir</button>
   </div>
+
+  <!-- pdf viewer of the loaded file -->
+  <div class="pdf-container">
+    <pdf
+      v-if="pdf"
+      :src="pdf"
+      
+    />
+  </div>
+
+  
+
+  
+
 </template>
 
 <style scoped>
